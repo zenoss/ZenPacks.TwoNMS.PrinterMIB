@@ -44,7 +44,7 @@
         <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
                             tableName,'type','Supply Type')"/>
         <th tal:replace="structure python:here.ZenTableManager.getTableHeader(
-                            tableName,'inkused','Pct Ink Used')"/>
+                            tableName,'inkused','Pct Ink Rem')"/>
     </tr>
 
     <tal:block tal:repeat="r batch">

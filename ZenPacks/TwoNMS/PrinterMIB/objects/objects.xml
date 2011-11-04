@@ -64,21 +64,41 @@ True
 </object>
 </tomanycont>
 <tomanycont id='thresholds'>
-<object id='Ink Threshold' module='Products.ZenModel.MinMaxThreshold' class='MinMaxThreshold'>
+<object id='Supply lower than 5 percent' module='Products.ZenModel.MinMaxThreshold' class='MinMaxThreshold'>
 <property label="DataPoints" type="lines" id="dsnames" mode="w" >
 ['InkUsage_prtMarkerSuppliesLevel']
 </property>
 <property label="Enabled" type="boolean" id="enabled" mode="w" >
 True
 </property>
-<property type="string" id="maxval" mode="w" >
-here.prtMarkerSuppliesMaxCapacity * .95
+<property type="string" id="minval" mode="w" >
+(0.05 * here.prtMarkerSuppliesMaxCapacity) if (here.prtMarkerSuppliesLevel >= 0) else -3
 </property>
 <property type="string" id="eventClass" mode="w" >
 /Perf/Snmp
 </property>
 <property type="int" id="severity" mode="w" >
 3
+</property>
+<property type="int" id="escalateCount" mode="w" >
+0
+</property>
+</object>
+<object id='Supply nearly out' module='Products.ZenModel.MinMaxThreshold' class='MinMaxThreshold'>
+<property label="DataPoints" type="lines" id="dsnames" mode="w" >
+['InkUsage_prtMarkerSuppliesLevel']
+</property>
+<property label="Enabled" type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="minval" mode="w" >
+(0.0001 * here.prtMarkerSuppliesMaxCapacity) if (here.prtMarkerSuppliesLevel >= 0) else -3
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Perf/Snmp
+</property>
+<property type="int" id="severity" mode="w" >
+2
 </property>
 <property type="int" id="escalateCount" mode="w" >
 0
@@ -110,17 +130,17 @@ False
 --vertical-label=${here/PrtMarkerSuppliesSupplyUnitTC}
 --upper-limit=${here/prtMarkerSuppliesMaxCapacity}
 DEF:prtMarkerSuppliesLevel-raw=${here/fullRRDPath}/InkUsage_prtMarkerSuppliesLevel.rrd:ds0:AVERAGE
-AREA:prtMarkerSuppliesLevel-raw#${here/rgbColorCode}:Ink Level
+AREA:prtMarkerSuppliesLevel-raw#${here/rgbColorCode}:Supply Level
 GPRINT:prtMarkerSuppliesLevel-raw:LAST:current\:%4.0lf%s\l
-HRULE:${here/prtMarkerSuppliesMaxCapacity}#000000:Ink Level  maximum\:  ${here/prtMarkerSuppliesMaxCapacity}
+HRULE:${here/prtMarkerSuppliesMaxCapacity}#000000:Supply Level  maximum\:  ${here/prtMarkerSuppliesMaxCapacity}
 </property>
 <property type="boolean" id="hasSummary" mode="w" >
 True
 </property>
 <tomanycont id='graphPoints'>
-<object id='Ink Threshold' module='Products.ZenModel.ThresholdGraphPoint' class='ThresholdGraphPoint'>
+<object id='Supply lower than 5 percent' module='Products.ZenModel.ThresholdGraphPoint' class='ThresholdGraphPoint'>
 <property type="string" id="threshId" mode="w" >
-Ink Threshold
+Supply lower than 5 percent
 </property>
 <property type="string" id="color" mode="w" >
 DD1111
