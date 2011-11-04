@@ -84,6 +84,26 @@ True
 0
 </property>
 </object>
+<object id='Supply nearly out' module='Products.ZenModel.MinMaxThreshold' class='MinMaxThreshold'>
+<property label="DataPoints" type="lines" id="dsnames" mode="w" >
+['InkUsage_prtMarkerSuppliesLevel']
+</property>
+<property label="Enabled" type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="minval" mode="w" >
+(0.0001 * here.prtMarkerSuppliesMaxCapacity) if (here.prtMarkerSuppliesLevel >= 0) else -3
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Perf/Snmp
+</property>
+<property type="int" id="severity" mode="w" >
+2
+</property>
+<property type="int" id="escalateCount" mode="w" >
+0
+</property>
+</object>
 </tomanycont>
 <tomanycont id='graphDefs'>
 <object id='Ink Usage' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
