@@ -5,7 +5,7 @@
 NAME = "ZenPacks.TwoNMS.PrinterMIB"
 VERSION = "1.0"
 AUTHOR = "2NMS - Maarten Wallraf"
-LICENSE = ""
+LICENSE = "GPLv2"
 NAMESPACE_PACKAGES = ['ZenPacks', 'ZenPacks.TwoNMS']
 PACKAGES = ['ZenPacks', 'ZenPacks.TwoNMS', 'ZenPacks.TwoNMS.PrinterMIB']
 INSTALL_REQUIRES = []
